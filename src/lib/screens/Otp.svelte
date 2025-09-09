@@ -41,7 +41,7 @@
         const otp = Array.from(inputs).map((input) => input.value);
         
         if (otp.join("") === "1234") {
-            step = 4;
+            step = 3;
         }
     }
 </script>
