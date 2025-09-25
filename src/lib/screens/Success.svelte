@@ -11,7 +11,9 @@
         }
     });
 
-    async function sendData() {}
+    async function sendData() {
+        // todo svuotare localhost
+    }
 </script>
 
 <!-- TESTO -->

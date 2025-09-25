@@ -8,11 +8,12 @@
   import AdultDetails from "./lib/screens/Adult-details.svelte";
   import KidsDetails from "./lib/screens/Kids-details.svelte";
   import Success from "./lib/screens/Success.svelte";
+  import Onboard from "./lib/screens/Onboard.svelte";
 
-  let step = 1;
+  let step = 0;
   let data = {};
   let processCompleted = false;
-
+  let restaurant = {};
 </script>
 
 <main>
@@ -21,31 +22,39 @@
       <div
         class="card flex flex-col w-full bg-white shadow-xl p-8 items-center justify-center"
       >
-        <Stepper bind:input={step} />
-        {#if step === 1}
+        {#if step === 0}
           <div in:slide out:slide>
-            <Welcome bind:step bind:data />
+            <Onboard bind:step bind:restaurant />
           </div>
         {/if}
-        {#if step === 2}
-          <div in:slide out:slide>
-            <Otp bind:step bind:data />
-          </div>
-        {/if}
-        {#if step === 3}
-          <div in:slide out:slide>
-            <AdultDetails bind:step bind:data />
-          </div>
-        {/if}
-        {#if step === 4}
-          <div in:slide out:slide>
-            <KidsDetails bind:step bind:data />
-          </div>
-        {/if}
-        {#if step === 5}
-          <div in:slide out:slide>
-            <Success bind:processCompleted bind:data bind:step/>
-          </div>
+
+        {#if step > 0}
+          <Stepper bind:input={step} />
+          {#if step === 1}
+            <div in:slide out:slide>
+              <Welcome bind:step bind:data />
+            </div>
+          {/if}
+          {#if step === 2}
+            <div in:slide out:slide>
+              <Otp bind:step bind:data />
+            </div>
+          {/if}
+          {#if step === 3}
+            <div in:slide out:slide>
+              <AdultDetails bind:step bind:data />
+            </div>
+          {/if}
+          {#if step === 4}
+            <div in:slide out:slide>
+              <KidsDetails bind:step bind:data />
+            </div>
+          {/if}
+          {#if step === 5}
+            <div in:slide out:slide>
+              <Success bind:processCompleted bind:data bind:step />
+            </div>
+          {/if}
         {/if}
       </div>
 
