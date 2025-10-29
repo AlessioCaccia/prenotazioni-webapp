@@ -7,50 +7,37 @@
             case "Torino":
                 Object.assign(restaurant, {
                     name: "Torino",
-                    address: "Via Torino, 1",
-                    phone: "333333333",
+                    address: "Via Caraglio 97, Torino",
+                    phone: "+39 011 016 00 59",
+                    phone2: "+39 327 732 14 90",
                     mail: "torino_webapp@benvenuto.org",
-                });
-                break;
-            case "Verona":
-                Object.assign(restaurant, {
-                    name: "Verona",
-                    address: "Via Verona, 1",
-                    phone: "333333333",
-                    mail: "verona_webapp@benvenuto.org",
                 });
                 break;
             case "Milano":
                 Object.assign(restaurant, {
                     name: "Milano",
-                    address: "Via Milano, 1",
-                    phone: "333333333",
-                    mail: "milanovetra_webapp@benvenuto.org",
+                    address: "Via Fernanda Wittengs 6/B, Milano",
+                    phone: "+39 02 841 00 698",
+                    phone2: "+39 351 88 57 882",
+                    mail: "milano_webapp@benvenuto.org",
                 });
                 break;
             case "Venaria":
                 Object.assign(restaurant, {
                     name: "Venaria",
-                    address: "Via Venaria, 1",
-                    phone: "333333333",
+                    address: "C.so Garibaldi 155, Venaria",
+                    phone: "+39 011 197.15.073",
+                    phone2: "+39 320 44 70 812",
                     mail: "venaria_webapp@benvenuto.org",
                 });
                 break;
             case "Monza":
                 Object.assign(restaurant, {
                     name: "Monza",
-                    address: "Via Monza, 1",
-                    phone: "333333333",
+                    address: "Via Solferino 29/A, Monza",
+                    phone: "+39 039 636 1032",
+                    phone2: "+39 344 349 0652",
                     mail: "monza_webapp@benvenuto.org",
-                });
-                break;
-            case "Rivalta":
-                Object.assign(restaurant, {
-                    name: "Rivalta",
-                    address: "Via Rivalta, 1",
-                    phone: "333333333",
-                    mail: "rivalta1_webapp@benvenuto.org",
-                    // mail: "rivalta2_webapp@benvenuto.org",
                 });
                 break;
         }
@@ -70,10 +57,6 @@
     >
     <button
         class="btn btn-xl"
-        on:click|preventDefault={() => collectData("Verona")}>Verona</button
-    >
-    <button
-        class="btn btn-xl"
         on:click|preventDefault={() => collectData("Milano")}>Milano</button
     >
     <button
@@ -84,8 +67,5 @@
         class="btn btn-xl"
         on:click|preventDefault={() => collectData("Monza")}>Monza</button
     >
-    <button
-        class="btn btn-xl"
-        on:click|preventDefault={() => collectData("Rivalta")}>Rivalta</button
-    >
 </div>
+    
