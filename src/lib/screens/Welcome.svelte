@@ -1,10 +1,10 @@
 <script lang="ts">
     export let step: number;
-    export let data = {};
+    export let adult_data = {};
 
     function collectData() {
         const phone = document.getElementById("phone") as HTMLInputElement;
-        Object.assign(data, { phone: phone.value });
+        Object.assign(adult_data, { phone: phone.value });
 
         step = 2;
     }
@@ -12,16 +12,16 @@
 
 <!-- TESTO -->
 <div class="w-auto">
-    <h2 class="text-gray-900 inter font-semibold text-5xl text-center">
+    <h2 class="text-white inter font-light text-5xl">
         Verifica il tuo numero
     </h2>
-    <h2 class="text-gray-700 text-lg text-center mt-2">
+    <h2 class="text-white text-lg mt-2">
         Inserisci il tuo numero di telefono per continuare. <br /> Ti invieremo un
         codice di verifica.
     </h2>
 
     <!-- FORM NUMERO -->
-    <div class="flex flex-row gap-2 justify-center mt-8">
+    <div class="flex flex-row gap-2 mt-8">
         <label class="input validator">
             <svg
                 class="h-[2em] opacity-50"
@@ -47,9 +47,10 @@
                 class="tabular-nums input-lg"
                 required
                 placeholder="Telefono"
+                value="+39"
                 pattern="[0-9]*"
                 minlength="10"
-                maxlength="10"
+                maxlength="18"
                 title="Almeno 10 numeri"
             />
         </label>
@@ -61,10 +62,11 @@
 
 <!-- NOTE -->
 <div>
-    <h2 class="text-gray-600 text-sm text-center mt-8">
+    <h2 class="text-white text-sm mt-8">
         Non condivideremo mai il tuo numero con nessuno.
     </h2>
 </div>
 
 <style>
+
 </style>

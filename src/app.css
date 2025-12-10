@@ -12,14 +12,63 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 } */
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
+
 @plugin "daisyui" {
-  themes: autumn --default, dark --prefersdark, autumn;
+  themes: light --default, light --preferslight, light;
 }
 
 .inter {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
+  font-family: 'Inter';
+}
+
+@font-face {
+  font-family: 'Inter';
   font-style: normal;
+  src: url('/src/assets/fonts/Inter.ttf');
+}
+
+@layer utilities {
+  .steps {
+    & .step-primary {
+
+      &+.step-primary::before,
+      &::after,
+      &>.step-icon {
+        --step-bg: #50685e !important;
+        --step-fg: var(--color-primary-content);
+      }
+    }
+  }
+
+
+  .btn {
+    background-color: #50685e !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 400 !important;
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .102) !important;
+  }
+
+  .input {
+    background-color: #50685e !important;
+    color: white !important;
+    font-weight: 400;
+  }
+
+  .select {
+    background-color: #50685e !important;
+    color: white !important;
+    font-weight: 400;
+  }
+
+  .collapse {
+    background-color: transparent !important;
+  }
+
+  .checkbox {
+    background-color: #6d8f81 !important;
+    color: white !important;
+  }
+
 }

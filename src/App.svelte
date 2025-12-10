@@ -11,16 +11,16 @@
   import Onboard from "./lib/screens/Onboard.svelte";
 
   let step = 0;
-  let data = {};
+  let adult_data = {};
   let processCompleted = false;
   let restaurant = {};
 </script>
 
 <main>
-  <div class="wrapper">
+  <div class="wrapper lg:h-screen max-h-screen">
     <div class="wrap flex flex-row h-full">
       <div
-        class="card flex flex-col w-full bg-white shadow-xl p-8 items-center justify-center"
+        class="card flex flex-col lg:max-w-[70%] max-w-full w-full bg-[#6d8f81] shadow-xl p-8 items-center justify-center"
       >
         {#if step === 0}
           <div in:slide out:slide>
@@ -32,34 +32,39 @@
           <Stepper bind:input={step} />
           {#if step === 1}
             <div in:slide out:slide>
-              <Welcome bind:step bind:data />
+              <Welcome bind:step bind:adult_data />
             </div>
           {/if}
           {#if step === 2}
             <div in:slide out:slide>
-              <Otp bind:step bind:data />
+              <Otp bind:step bind:adult_data />
             </div>
           {/if}
           {#if step === 3}
-            <div in:slide out:slide>
-              <AdultDetails bind:step bind:data />
+            <div class="w-full" in:slide out:slide>
+              <AdultDetails bind:step bind:adult_data />
             </div>
           {/if}
           {#if step === 4}
             <div in:slide out:slide>
-              <KidsDetails bind:step bind:data />
+              <KidsDetails bind:step bind:adult_data />
             </div>
           {/if}
           {#if step === 5}
             <div in:slide out:slide>
-              <Success bind:processCompleted bind:data bind:step />
+              <Success
+                bind:processCompleted
+                bind:adult_data
+                bind:step
+                bind:restaurant
+              />
             </div>
           {/if}
         {/if}
       </div>
 
-      <div class="flex-1">
-        <Background bind:input={step} />
+      <div class="flex-1 hidden lg:contents">
+        <Background/>
       </div>
     </div>
   </div>
@@ -67,16 +72,16 @@
 
 <style>
   main {
-    background-color: #feece4;
+
+    background-color: #fff;
   }
+
   .wrapper {
     height: 100vh;
     max-height: 100vh;
   }
   .card {
     border-radius: 0 24px 24px 0;
-
-    max-width: 700px;
     width: 100%;
     -webkit-transition: width 1s ease-in-out;
     -moz-transition: width 1s ease-in-out;

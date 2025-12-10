@@ -1,16 +1,19 @@
 <script lang="ts">
-    import family_bg from "../../assets/1.png";
-    import otp_bg from "../../assets/2.png";
-    import detal_bg from "../../assets/3.png";
-    import kids_bg from "../../assets/4.png";
+    import logo from "../../assets/logo.png";
 
     import { blur } from "svelte/transition";
 
-    export let input: number;
+    // export let input: number;
 </script>
 
-<div class="w-full h-full overflow-hidden m-auto">
-    {#if input === 1}
+<div class="w-full h-full flex items-center justify-center overflow-hidden m-auto">
+    <img
+        class="object-contain bg-center"
+        src={logo}
+        alt="Details"
+        in:blur={{ duration: 800 }}
+    />
+    <!-- {#if input === 1}
         <img
             class="object-cover bg-center w-full h-full"
             src={family_bg}
@@ -38,5 +41,5 @@
             alt="Details"
             in:blur={{ duration: 800 }}
         />
-    {/if}
+    {/if} -->
 </div>
