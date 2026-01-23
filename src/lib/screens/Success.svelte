@@ -32,7 +32,7 @@
         adult_data.kids.filter((item) => item.checked === true).forEach((kidDetails, index) => {
             if (index > 0) doc.addPage([pageWidth, pageHeight]); // new page
 
-            const text = `${kidDetails.name}\n\n Tavolo ${adult_data.table}`;
+            const text = `${kidDetails.name}\n\n Tavolo\n\n ${adult_data.table}`;
 
             // Font styling
             doc.setFont("helvetica", "normal");
