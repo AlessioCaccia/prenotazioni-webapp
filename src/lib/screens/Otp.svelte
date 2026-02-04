@@ -3,6 +3,7 @@
     export let adult_data = {};
 
     import { onMount } from "svelte";
+    import whatsapp from "../../assets/whatsapp.png";
 
     let counter = 30;
     let enabled = false;
@@ -89,7 +90,12 @@
     <header class="mb-8">
         <p class="text-[15px] text-white">
             Inserisci il codice di verifica a 4 cifre <br /> che è stato inviato
-            al tuo numero di telefono.
+            al tuo numero WhatsApp.
+            <img
+                class="object-contain bg-center h-6 w-6 inline-block ml-2"
+                src={whatsapp}
+                alt="Details"
+            />
         </p>
     </header>
     <form id="otp-form">
@@ -114,12 +120,15 @@
     <div class="text-sm text-white mt-4">
         Non hai ricevuto il codice? <br />
         {#if !enabled}
-            <span class="text-white cursor-pointer">Invia di nuovo fra {counter}s</span>
+            <span class="text-white cursor-pointer"
+                >Invia di nuovo fra {counter}s</span
+            >
         {:else}
             <a
                 class="font-medium text-mwhite cursor-pointer"
                 href="#0"
-                on:click|preventDefault={resendCode}>Clicca qui per ricevere un nuovo codice</a
+                on:click|preventDefault={resendCode}
+                >Clicca qui per ricevere un nuovo codice</a
             >
         {/if}
     </div>
