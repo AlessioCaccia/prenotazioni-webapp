@@ -76,6 +76,11 @@
     }
 
     function collectData() {
+        if (formatted_kids.length == 0) {
+            alert(`Inserire almeno un bambino per continuare`);
+            return false;
+        }
+
         Object.assign(adult_data, {
             kids: formatted_kids,
         });

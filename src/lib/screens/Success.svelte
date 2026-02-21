@@ -29,33 +29,36 @@
             format: [pageWidth, pageHeight],
         });
 
-        adult_data.kids.filter((item) => item.checked === true).forEach((kidDetails, index) => {
-            if (index > 0) doc.addPage([pageWidth, pageHeight]); // new page
+        adult_data.kids
+            .filter((item) => item.checked === true)
+            .forEach((kidDetails, index) => {
+                if (index > 0) doc.addPage([pageWidth, pageHeight]); // new page
 
-            const text = `${kidDetails.name}\n\n Tavolo\n\n ${adult_data.table}`;
+                const text = `${kidDetails.name}\n\n Tavolo\n\n ${adult_data.table}`;
 
-            // Font styling
-            doc.setFont("helvetica", "normal");
-            doc.setFontSize(30);
+                // Font styling
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(30);
 
-            // Split into lines (so it centers multiline text correctly)
-            const lines = text.split("\n");
+                // Split into lines (so it centers multiline text correctly)
+                const lines = text.split("\n");
 
-            // Measure the width and height of the text block
-            const lineHeight = 8; // roughly 8mm per line at fontSize 16
-            const textBlockHeight = lines.length * lineHeight;
+                // Measure the width and height of the text block
+                const lineHeight = 8; // roughly 8mm per line at fontSize 16
+                const textBlockHeight = lines.length * lineHeight;
 
-            // Compute vertical starting position
-            const startY = (pageHeight - textBlockHeight) / 2 + lineHeight / 2;
+                // Compute vertical starting position
+                const startY =
+                    (pageHeight - textBlockHeight) / 2 + lineHeight / 2;
 
-            // Draw each line centered horizontally
-            lines.forEach((line, i) => {
-                const textWidth = doc.getTextWidth(line);
-                const x = (pageWidth - textWidth) / 2;
-                const y = startY + i * lineHeight;
-                doc.text(line, x, y);
+                // Draw each line centered horizontally
+                lines.forEach((line, i) => {
+                    const textWidth = doc.getTextWidth(line);
+                    const x = (pageWidth - textWidth) / 2;
+                    const y = startY + i * lineHeight;
+                    doc.text(line, x, y);
+                });
             });
-        });
 
         // 2. Convert to Blob
         const pdfBlob = doc.output("blob");
@@ -91,70 +94,63 @@
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsZ2RmY25ybWt0dmhpY2d0Z250Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1OTkwMDQ1NywiZXhwIjoyMDc1NDc2NDU3fQ.b_4kV6jMFa7LOOOx5YWA5m05QSTJ_WnT4DEdjjBb_5g",
         );
 
+        const payload :any = {
+            adult_first_name: adult_data.name,
+            adult_last_name: adult_data.surname,
+            adult_phone: adult_data.phone,
+            adult_email: adult_data.email,
+            adult_dob: adult_data.date,
+            child_count: adult_data.kids.length,
+            sede: restaurant.name,
+            cap: adult_data.cap,
+            child_1_first_name: adult_data.kids[0]
+                ? adult_data.kids[0].name
+                : null,
+            child_1_last_name: adult_data.kids[0]
+                ? adult_data.kids[0].surname
+                : null,
+            child_1_dob: adult_data.kids[0] ? adult_data.kids[0].date : null,
+
+            child_2_first_name: adult_data.kids[1]
+                ? adult_data.kids[1].name
+                : null,
+            child_2_last_name: adult_data.kids[1]
+                ? adult_data.kids[1].surname
+                : null,
+            child_2_dob: adult_data.kids[1] ? adult_data.kids[1].date : null,
+
+            child_3_first_name: adult_data.kids[2]
+                ? adult_data.kids[2].name
+                : null,
+            child_3_last_name: adult_data.kids[2]
+                ? adult_data.kids[2].surname
+                : null,
+            child_3_dob: adult_data.kids[2] ? adult_data.kids[2].date : null,
+
+            child_4_first_name: adult_data.kids[3]
+                ? adult_data.kids[3].name
+                : null,
+            child_4_last_name: adult_data.kids[3]
+                ? adult_data.kids[3].surname
+                : null,
+            child_4_dob: adult_data.kids[3] ? adult_data.kids[3].date : null,
+
+            child_5_first_name: adult_data.kids[4]
+                ? adult_data.kids[4].name
+                : null,
+            child_5_last_name: adult_data.kids[4]
+                ? adult_data.kids[4].surname
+                : null,
+            child_5_dob: adult_data.kids[4] ? adult_data.kids[4].date : null,
+        };
+
+        if (adult_data.id) {
+            payload.id = adult_data.id;
+        }
+
         const { data, error } = await supabase
             .from("benvenuto db - 13.10.25")
-            .upsert([
-                {
-                    id: adult_data.id,
-                    adult_first_name: adult_data.name,
-                    adult_last_name: adult_data.surname,
-                    adult_phone: adult_data.phone,
-                    adult_email: adult_data.email,
-                    adult_dob: adult_data.date,
-                    child_count: adult_data.kids.length,
-                    sede: restaurant.name,
-                    cap: adult_data.cap,
-                    child_1_first_name: adult_data.kids[0]
-                        ? adult_data.kids[0].name
-                        : null,
-                    child_1_last_name: adult_data.kids[0]
-                        ? adult_data.kids[0].surname
-                        : null,
-                    child_1_dob: adult_data.kids[0]
-                        ? adult_data.kids[0].date
-                        : null,
-
-                    child_2_first_name: adult_data.kids[1]
-                        ? adult_data.kids[1].name
-                        : null,
-                    child_2_last_name: adult_data.kids[1]
-                        ? adult_data.kids[1].surname
-                        : null,
-                    child_2_dob: adult_data.kids[1]
-                        ? adult_data.kids[1].date
-                        : null,
-
-                    child_3_first_name: adult_data.kids[2]
-                        ? adult_data.kids[2].name
-                        : null,
-                    child_3_last_name: adult_data.kids[2]
-                        ? adult_data.kids[2].surname
-                        : null,
-                    child_3_dob: adult_data.kids[2]
-                        ? adult_data.kids[2].date
-                        : null,
-
-                    child_4_first_name: adult_data.kids[3]
-                        ? adult_data.kids[3].name
-                        : null,
-                    child_4_last_name: adult_data.kids[3]
-                        ? adult_data.kids[3].surname
-                        : null,
-                    child_4_dob: adult_data.kids[3]
-                        ? adult_data.kids[3].date
-                        : null,
-
-                    child_5_first_name: adult_data.kids[4]
-                        ? adult_data.kids[4].name
-                        : null,
-                    child_5_last_name: adult_data.kids[4]
-                        ? adult_data.kids[4].surname
-                        : null,
-                    child_5_dob: adult_data.kids[4]
-                        ? adult_data.kids[4].date
-                        : null,
-                },
-            ])
+            .upsert(payload)
             .select();
     }
 
