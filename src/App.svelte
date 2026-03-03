@@ -9,6 +9,7 @@
   import KidsDetails from "./lib/screens/Kids-details.svelte";
   import Success from "./lib/screens/Success.svelte";
   import Onboard from "./lib/screens/Onboard.svelte";
+  import Connect from "./lib/screens/Connect.svelte";
 
   let step = 0;
   let adult_data = {};
@@ -60,11 +61,16 @@
               />
             </div>
           {/if}
+          {#if step === 9}
+            <div in:slide out:slide>
+              <Connect />
+            </div>
+          {/if}
         {/if}
       </div>
 
       <div class="flex-1 hidden lg:contents">
-        <Background/>
+        <Background />
       </div>
     </div>
   </div>
@@ -72,7 +78,6 @@
 
 <style>
   main {
-
     background-color: #fff;
   }
 

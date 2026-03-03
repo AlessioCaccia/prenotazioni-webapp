@@ -57,7 +57,7 @@
                     phone2: "+39 344 349 0652",
                     mail: "monza_webapp@food-fun.it",
                 });
-                break;
+                break;   
         }
 
         if (
@@ -67,6 +67,10 @@
             data == "Venaria"
         ) {
             step = 1;
+        }
+
+        if (data == "Connect") {
+            step = 9;
         }
     }
 </script>
